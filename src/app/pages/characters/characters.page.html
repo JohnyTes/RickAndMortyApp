@@ -1,0 +1,47 @@
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <ion-item>
+      <ion-label [routerLink]="['/favourites']" routerDirection="root">Favourites</ion-label>
+    </ion-item>
+  </ion-content>
+</ion-menu>
+
+<div id="main-content">
+  <ion-header style="display: flex;">
+    <ion-toolbar color="primary">
+        <ion-menu-button slot="start"></ion-menu-button>
+      <ion-title>Characters</ion-title>
+    </ion-toolbar>
+  </ion-header>
+</div>
+
+<ion-content class="ion-padding">
+  <ion-header>
+    <ion-toolbar>
+      <div class="search">
+        <ion-searchbar placeholder="Search" [(ngModel)]="searchTerm" (ionInput)="searchInput($event)">
+        </ion-searchbar>
+      </div>
+    </ion-toolbar>
+  </ion-header>
+  <ion-list *ngIf="!displayList">
+    <ion-item button *ngFor="let item of allCharacters | filter:searchTerm" [routerLink]="[item.id]">
+      <ion-label>{{item.name}}</ion-label>
+      <ion-avatar slot="end"><img src="{{item?.image}}"></ion-avatar>
+    </ion-item>
+  </ion-list>
+  <ion-list *ngIf="displayList">
+    <ion-item button *ngFor="let item of characters | filter:searchTerm" [routerLink]="[item.id]">
+      <ion-label>{{item.name}}</ion-label>
+      <ion-avatar slot="end"><img src="{{item?.image}}"></ion-avatar>
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll *ngIf="noData()" (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content loadingText="Please wait..." loadingSpinner="bubbles"></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

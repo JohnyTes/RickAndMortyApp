@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>{{character?.name}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/characters"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-icon *ngIf="!isFavourite" style="font-size: 125%;" name=star-outline (click)="addData(character)"></ion-icon>
+      <ion-icon *ngIf="isFavourite" style="font-size: 125%;" name=star (click)="removeItem()"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card *ngIf="character">
+    <div style="display: flex; justify-content: center;" >
+      <img src="{{character.image}}">
+    </div>
+    <ion-item>
+      <ion-label class="ion-text-wrap">Status: {{character.status}}</ion-label>
+      <ion-label class="ion-text-wrap">Species: {{character.species}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label class="ion-text-wrap">Gender: {{character.gender}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label class="ion-text-wrap">Origin: {{character.origin.name}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label class="ion-text-wrap">First seen: {{firstEpisode?.name}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label class="ion-text-wrap">Last seen: {{lastEpisode?.name}}</ion-label>
+    </ion-item>
+  </ion-card>
+</ion-content>

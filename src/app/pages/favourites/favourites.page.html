@@ -1,0 +1,30 @@
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <ion-item>
+      <ion-label [routerLink]="['/characters']" routerDirection="root">Characters</ion-label>
+    </ion-item>
+  </ion-content>
+</ion-menu>
+
+<div id="main-content">
+  <ion-header style="display: flex;">
+    <ion-toolbar color="primary">
+        <ion-menu-button slot="start"></ion-menu-button>
+      <ion-title>Favourites</ion-title>
+    </ion-toolbar>
+  </ion-header>
+</div>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let item of listData;let i=index;">
+      <ion-label>{{item.name}}</ion-label>
+      <ion-avatar slot="end"><img src="{{item.image}}"></ion-avatar>
+    </ion-item>
+  </ion-list>
+</ion-content>
